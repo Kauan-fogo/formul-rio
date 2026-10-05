@@ -1,0 +1,910 @@
+Aqui estão os arquivos separadamente em HTML, CSS e JavaScript:
+
+1. index.html
+HTML
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estágio Hub - Divulgação e Cadastro de Vagas</title>
+  
+  <!-- Fontes Google e Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navegação -->
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Estágio<strong>Hub</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#vagas">Vagas Abertas</a></li>
+        <li><a href="#cadastrar" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Anunciar Vaga</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="badge">O seu portal de oportunidades</span>
+        <h1>Conecte sua empresa aos <span>melhores talentos</span> do mercado</h1>
+        <p>Cadastre vagas de estágio em poucos passos e encontre os estudantes mais qualificados para somar ao seu time.</p>
+        <div class="hero-buttons">
+          <a href="#cadastrar" class="btn btn-primary btn-lg"><i class="fa-solid fa-paper-plane"></i> Cadastrar uma Vaga</a>
+          <a href="#vagas" class="btn btn-secondary btn-lg"><i class="fa-solid fa-search"></i> Ver Vagas</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <i class="fa-solid fa-briefcase"></i>
+          <h3 id="statTotalVagas">0</h3>
+          <p>Vagas Cadastradas</p>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-building"></i>
+          <h3 id="statEmpresas">0</h3>
+          <p>Empresas Ativas</p>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h3>+1.200</h3>
+          <p>Estudantes Impactados</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="container main-content">
+
+    <!-- Seção de Cadastro de Vaga -->
+    <section id="cadastrar" class="card-section">
+      <div class="section-header">
+        <i class="fa-solid fa-file-circle-plus section-icon"></i>
+        <div>
+          <h2>Cadastrar Nova Vaga de Estágio</h2>
+          <p>Preencha os campos abaixo para disponibilizar a oportunidade na nossa tabela pública.</p>
+        </div>
+      </div>
+
+      <form id="formVaga" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="titulo"><i class="fa-solid fa-heading"></i> Título do Cargo *</label>
+            <input type="text" id="titulo" placeholder="Ex: Estágio em Desenvolvimento Front-end" required>
+          </div>
+
+          <div class="form-group">
+            <label for="empresa"><i class="fa-solid fa-building"></i> Nome da Empresa *</label>
+            <input type="text" id="empresa" placeholder="Ex: Tech Solutions" required>
+          </div>
+
+          <div class="form-group">
+            <label for="area"><i class="fa-solid fa-layer-group"></i> Área de Atuação *</label>
+            <select id="area" required>
+              <option value="">Selecione uma área</option>
+              <option value="Tecnologia">Tecnologia & TI</option>
+              <option value="Administração">Administração / Gestão</option>
+              <option value="Marketing">Marketing & Comunicação</option>
+              <option value="Design">Design & UX/UI</option>
+              <option value="Engenharia">Engenharia</option>
+              <option value="Financeiro">Financeiro / Contabilidade</option>
+              <option value="Outros">Outras Áreas</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="modalidade"><i class="fa-solid fa-laptop-house"></i> Modalidade *</label>
+            <select id="modalidade" required>
+              <option value="">Selecione a modalidade</option>
+              <option value="Presencial">Presencial</option>
+              <option value="Remoto">Remoto (Home Office)</option>
+              <option value="Híbrido">Híbrido</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bolsa"><i class="fa-solid fa-hand-holding-dollar"></i> Bolsa Auxílio (R$/mês) *</label>
+            <input type="number" id="bolsa" placeholder="Ex: 1500" min="0" step="50" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cidade"><i class="fa-solid fa-location-dot"></i> Cidade / Estado *</label>
+            <input type="text" id="cidade" placeholder="Ex: São Paulo - SP" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="requisitos"><i class="fa-solid fa-list-check"></i> Requisitos e Pré-requisitos *</label>
+            <input type="text" id="requisitos" placeholder="Ex: Cursando Análise de Sistemas, Conhecimento em HTML/CSS/JS..." required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="contato"><i class="fa-solid fa-envelope"></i> E-mail ou Link para Candidatura *</label>
+            <input type="text" id="contato" placeholder="Ex: vagas@empresa.com.br ou https://link-vaga.com" required>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="reset" class="btn btn-secondary"><i class="fa-solid fa-eraser"></i> Limpar</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Publicar Vaga</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Seção da Tabela de Vagas -->
+    <section id="vagas" class="card-section">
+      <div class="section-header space-between">
+        <div class="header-title">
+          <i class="fa-solid fa-list-ol section-icon"></i>
+          <div>
+            <h2>Vagas em Destaque</h2>
+            <p>Confira abaixo as oportunidades disponíveis ativas no momento.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros e Busca -->
+      <div class="table-controls">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchBox" placeholder="Buscar por cargo, empresa ou requisito...">
+        </div>
+        
+        <div class="filter-box">
+          <select id="filterArea">
+            <option value="todos">Todas as Áreas</option>
+            <option value="Tecnologia">Tecnologia & TI</option>
+            <option value="Administração">Administração</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Design">Design</option>
+            <option value="Engenharia">Engenharia</option>
+            <option value="Financeiro">Financeiro</option>
+            <option value="Outros">Outros</option>
+          </select>
+
+          <select id="filterModalidade">
+            <option value="todos">Todas Modalidades</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Remoto">Remoto</option>
+            <option value="Híbrido">Híbrido</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tabela Responsiva -->
+      <div class="table-responsive">
+        <table class="table-vagas">
+          <thead>
+            <tr>
+              <th>Cargo / Vaga</th>
+              <th>Empresa</th>
+              <th>Área</th>
+              <th>Modalidade</th>
+              <th>Bolsa Auxílio</th>
+              <th>Localização</th>
+              <th style="text-align: center;">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaVagasBody">
+            <!-- As vagas inseridas dinamicamente via JavaScript entram aqui -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Estado Vazio -->
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <i class="fa-solid fa-folder-open"></i>
+        <h3>Nenhuma vaga encontrada</h3>
+        <p>Tente refazer sua busca ou seja o primeiro a cadastrar uma oportunidade!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal de Detalhes da Vaga -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <span class="badge" id="modalArea">Tecnologia</span>
+        <h2 id="modalTitulo">Título da Vaga</h2>
+        <p id="modalEmpresa" class="modal-empresa"><i class="fa-solid fa-building"></i> Nome da Empresa</p>
+      </div>
+      <div class="modal-body">
+        <div class="modal-grid-info">
+          <div>
+            <i class="fa-solid fa-laptop-house"></i>
+            <strong>Modalidade:</strong>
+            <span id="modalModalidade">Remoto</span>
+          </div>
+          <div>
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <strong>Bolsa:</strong>
+            <span id="modalBolsa">R$ 1.500,00</span>
+          </div>
+          <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <strong>Local:</strong>
+            <span id="modalCidade">São Paulo - SP</span>
+          </div>
+          <div>
+            <i class="fa-solid fa-calendar-alt"></i>
+            <strong>Data da Publicação:</strong>
+            <span id="modalData">01/01/2026</span>
+          </div>
+        </div>
+        <div class="modal-section">
+          <h4>Requisitos</h4>
+          <p id="modalRequisitos">Conhecimentos exigidos para o cargo...</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" target="_blank" id="modalBtnCandidatar" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Candidatar-se Agora</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notificação -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg">Mensagem do sistema</span>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 <strong>EstágioHub</strong>. Conectando novos talentos ao futuro.</p>
+    </div>
+  </footer>
+
+  <!-- JS Externo -->
+  <script src="script.js"></script>
+</body>
+</html>
+2. style.css
+CSS
+/* RESET E ESTILOS GERAIS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary-color: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --bg-color: #f1f5f9;
+  --white: #ffffff;
+  --success: #10b981;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  --transition: all 0.25s ease-in-out;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 15px 0;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo strong {
+  color: var(--text-main);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+/* BOTÕES */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+.btn-danger {
+  background-color: #fee2e2;
+  color: var(--danger);
+}
+
+.btn-danger:hover {
+  background-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.btn-info {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.btn-info:hover {
+  background-color: #bae6fd;
+}
+
+/* HERO SECTION */
+.hero {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: var(--white);
+  padding: 70px 0 90px;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  background-color: rgba(37, 99, 235, 0.2);
+  color: #60a5fa;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-text h1 span {
+  color: #60a5fa;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stat-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat-card i {
+  font-size: 2rem;
+  color: #60a5fa;
+}
+
+.stat-card h3 {
+  font-size: 1.5rem;
+}
+
+.stat-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* CONTEÚDO PRINCIPAL E CARDS */
+.main-content {
+  margin-top: -40px;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.card-section {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 35px;
+  box-shadow: var(--shadow);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.section-header.space-between {
+  justify-content: space-between;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.section-icon {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  background-color: #eff6ff;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* FORMULÁRIO */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group label i {
+  color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* CONTROLES DA TABELA (BUSCA E FILTROS) */
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-box i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 15px 10px 42px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.search-box input:focus {
+  border-color: var(--primary-color);
+}
+
+.filter-box {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-box select {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: var(--white);
+  cursor: pointer;
+}
+
+/* TABELA */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-vagas {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table-vagas th {
+  background-color: #f8fafc;
+  padding: 14px 16px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-vagas td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.table-vagas tbody tr {
+  transition: var(--transition);
+}
+
+.table-vagas tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.tag-area {
+  background-color: #e0e7ff;
+  color: #3730a3;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tag-modalidade {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tag-modalidade.remoto { background-color: #dcfce7; color: #166534; }
+.tag-modalidade.presencial { background-color: #fef3c7; color: #92400e; }
+.tag-modalidade.hibrido { background-color: #f3e8ff; color: #6b21a8; }
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ESTADO VAZIO */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-muted);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #cbd5e1;
+}
+
+.empty-state h3 {
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+/* MODAL DE DETALHES */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(20px);
+  transition: var(--transition);
+}
+
+.modal-overlay.active .modal-card {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modal-header {
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  margin-top: 8px;
+}
+
+.modal-empresa {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.modal-grid-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  background-color: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.modal-grid-info div {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-grid-info i {
+  color: var(--primary-color);
+}
+
+.modal-section h4 {
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.modal-section p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  white-space: pre-line;
+}
+
+.modal-footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* NOTIFICAÇÃO TOAST */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--text-main);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 1100;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast i {
+  color: var(--success);
+  font-size: 1.2rem;
+}
+
+/* RODAPÉ */
+.footer {
+  background-color: var(--white);
+  border-top: 1px solid var(--border-color);
+  padding: 25px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 868px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .modal-grid-info {
+    grid-template-columns: 1fr;
+  }
+}
